@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Hello Extensions",
+    "name": "Slime Game",
     "version": "1.0",
-    "description": "Base Level Extension",
+    "description": "Relax and have a good slime!",
     "action": {
         "default_popup": "slime.html",
         "default_icon": "images/Slime_Artwork.png"
