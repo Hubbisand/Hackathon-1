@@ -9,22 +9,54 @@ document.addEventListener("DOMContentLoaded", (event) => {
 });
 
 class Slime {
-    constructor() {
-        this.node = document.createElement("img");
-        this.node.setAttribute("id", "slime");
-        this.node.setAttribute("src", "images/Slime_Artwork.png");
-        this.node.style.height = '50px';
-        const body = document.querySelector('body');
-        let leftPosition = this.slimePositioner();
-        let topPosition = this.slimePositioner();
+  constructor() {
+    this.node = document.createElement("img");
+    this.node.setAttribute("id", "slime");
+    this.node.setAttribute("src", "images/Slime_Artwork.png");
+    this.node.style.height = "50px";
+    this.node.style.position = "absolute";
+    const currentScoreEle = document.querySelector("#current");
+    this.currentScore = 1;
+    const body = document.querySelector("body");
+    let leftPosition = this.slimePositioner();
+    let topPosition = this.slimePositioner();
+    currentScoreEle.innerHTML = `Current Score:  ${this.currentScore}`; 
 
+    this.node.style.left = `${leftPosition}px`;
+    this.node.style.top = `${topPosition}px`;
+    body.appendChild(this.node);
 
-        this.node.style.left = `${leftPosition}px`;
-        this.node.style.top = `${topPosition}px`;
-        body.appendChild(this.node);
-        
-    }
-    slimePositioner() {
-        return Math.floor(Math.random() * 550)
-    }
+    this.SPEED = 2000;
+    this.boundAppear = this.clickReappear.bind(this);
+    this.timeoutID = setTimeout(this.boundAppear, 2000);
+    this.isHidden = false;
+  }
+
+  slimePositioner() {
+    return Math.floor(Math.random() * 450) + 50;
+  }
+
+  checkClicked (){
+    // if (currentScore++)  ? this.clickReappear() : this.noClick();
+  }
+
+  clickReappear() {
+    clearTimeout(this.timeoutID);
+    this.timeoutID = setTimeout(this.boundAppear, this.SPEED);
+    const currentScoreEle = document.querySelector("#current");
+    const theSlime = this.node;
+    const body = document.querySelector('body');
+    theSlime.addEventListener('click', () => {
+        body.removeChild(theSlime);
+        new Slime();
+        this.currentScore ++;
+        currentScoreEle.innerHTML = `Current Score: ${this.currentScore}`
+        clearTimeout(this.timeoutID);
+        return setTimeout(this.boundAppear, 0);
+    })
+  }
+  
+  noClick() {
+
+  }
 }
