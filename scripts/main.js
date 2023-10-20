@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     body.style.height = "550px";
     body.style.width = '550px';
     const overture = new Audio("audio/01 Overture.mp3");
+    overture.volume = .1;
     overture.play();
     new Slime();
 });
