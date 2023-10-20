@@ -1,6 +1,13 @@
 {
-    "manifest-version": 3,
-    "name": "",
+    "manifest_version": 3,
+    "name": "Hello Extensions",
     "version": "1.0",
-    "description": ""
+    "description": "Base Level Extension",
+    "action": {
+        "default_popup": "slime.html",
+        "default_icon": "images/Slime_Artwork.png"
+      },
+      "icons": {
+        "16": "images/Slime_Artwork.png"
+      }
 }
