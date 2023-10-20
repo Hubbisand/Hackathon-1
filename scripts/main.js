@@ -8,22 +8,36 @@ document.addEventListener("DOMContentLoaded", (event) => {
 });
 
 class Slime {
-    constructor() {
-        this.node = document.createElement("img");
-        this.node.setAttribute("id", "slime");
-        this.node.setAttribute("src", "images/Slime_Artwork.png");
-        this.node.style.height = '50px';
-        const body = document.querySelector('body');
-        let leftPosition = this.slimePositioner();
-        let topPosition = this.slimePositioner();
+  constructor() {
+    this.node = document.createElement("img");
+    this.node.setAttribute("id", "slime");
+    this.node.setAttribute("src", "images/Slime_Artwork.png");
+    this.node.style.height = "50px";
+    const body = document.querySelector("body");
+    let leftPosition = this.slimePositioner();
+    let topPosition = this.slimePositioner();
 
+    this.node.style.left = `${leftPosition}px`;
+    this.node.style.top = `${topPosition}px`;
+    body.appendChild(this.node);
 
-        this.node.style.left = `${leftPosition}px`;
-        this.node.style.top = `${topPosition}px`;
-        body.appendChild(this.node);
-        
-    }
-    slimePositioner() {
-        return Math.floor(Math.random() * 550)
-    }
+    this.SPEED = 500;
+    this.boundAppear = this.reappear.bind(this);
+    this.timeoutID = setTimeout(this.boundAppear, this.SPEED);
+  }
+
+  slimePositioner() {
+    return Math.floor(Math.random() * 550);
+  }
+
+  reappear() {
+    clearTimeout(this.timeoutID);
+    this.timeoutID = setTimeout(this.boundAppear, this.SPEED);
+
+    const theSlime = this.node;
+    theSlime.addEventListener('click', () => {
+        theSlime.remove();
+        new Slime();
+    })
+  }
 }
