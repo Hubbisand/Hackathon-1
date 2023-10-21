@@ -1,0 +1,7 @@
+#current {
+          background-color: lightgoldenrodyellow;
+          border: "2px solid darkblue";
+          font-size: small;
+          margin: 5px;
+          width: auto;
+        }
