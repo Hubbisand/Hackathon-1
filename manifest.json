@@ -4,10 +4,17 @@
     "version": "1.0",
     "description": "Relax and have a good slime!",
     "action": {
-        "default_popup": "slime.html",
         "default_icon": "images/Slime_Artwork.png"
       },
       "icons": {
         "16": "images/Slime_Artwork.png"
-      }
+      },
+      "content_scripts": [
+        {
+          "js": ["scripts/main.js"],
+          "matches": [
+            "<all_urls>"
+          ]
+        }
+      ]
 }

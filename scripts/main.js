@@ -1,11 +1,21 @@
 document.addEventListener("DOMContentLoaded", (event) => {
+  console.log("Am I Firing?")
     const body = document.querySelector('body');
     body.style.height = "550px";
     body.style.width = '550px';
-    const overture = document.querySelector("#overture");
-    const curse = document.querySelector("#curse");
-    curse.volume = .1;
+    new Audio("audio/01 Overture.mp3")
+    
+    const overture = document.createElement("audio");
+    overture.setAttribute("id", "overture");
+    overture.setAttribute("src", "audio/01 Overture.mp3")
+    overture.play();
+    // const overturePlay = document.querySelector("#overture");
+    body.appendChild(overture);
+    
+    // const curse = document.querySelector("#curse");
+    // curse.volume = .1;
     overture.volume = .1;
+    
     const currentScoreEle = document.querySelector("#current");
     const slimeClass = new Slime();
     let timeoutID = setTimeout(slimeClass.boundAppear, slimeClass.SPEED)
