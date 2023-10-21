@@ -39,9 +39,10 @@ class Slime {
     this.node.style.left = `${leftPosition}px`;
     this.node.style.top = `${topPosition}px`;
     body.appendChild(this.node);
-
+    const currentLives = document.querySelector("#lives");
+    currentLives.innerHTML = `Current Lives: ${this.node.lives}`;
     this.SPEED = 2000;
-    this.boundAppear = this.clickReappear.bind(this);
+    this.boundAppear = this.reappear.bind(this);
     this.isHidden = false;
   }
 
@@ -49,8 +50,10 @@ class Slime {
     return Math.floor(Math.random() * 450) + 100;
   }
 
-  clickReappear() {
+  reappear() {
     this.node.lives --;
+    const currentLives = document.querySelector("#lives");
+    currentLives.innerHTML= `Current Lives: ${this.node.lives}`;
     if (this.node.lives === 0) {
         const overture = document.querySelector("#overture");
         const curse = document.querySelector("#curse");
